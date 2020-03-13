@@ -16,7 +16,7 @@ public:
     // (setting them default, just creates a problem, at least with c++17, because deleted by default)
 
     // TODO handlers for the QDataStream
-    QDataStream& operator<<(QDataStream& out, const CustomClass& value)
+    friend QDataStream& operator<<(QDataStream& out, const CustomClass& value)
     {
         out << value.avg;
         out << value.exp;
@@ -24,7 +24,7 @@ public:
         return out;
     }
 
-    QDataStream& operator>>(QDataStream& in, CustomClass& value)
+    friend QDataStream& operator>>(QDataStream& in, CustomClass& value)
     {
         in >> value.avg;
         in >> value.exp;
