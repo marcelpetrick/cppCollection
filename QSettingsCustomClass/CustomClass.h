@@ -1,6 +1,11 @@
 #pragma once
 
-#include <QMetaType>
+// Qt
+#include <QtCore/QMetaType>
+#include <QtCore/QDataStream>
+
+//! @note workflow follows mostly https://stackoverflow.com/questions/18144377/writing-and-reading-custom-class-to-qsettings (first answer)
+//! with the two QDataStream methods as friends
 
 class CustomClass
 {
@@ -11,6 +16,21 @@ public:
     // (setting them default, just creates a problem, at least with c++17, because deleted by default)
 
     // TODO handlers for the QDataStream
+    QDataStream& operator<<(QDataStream& out, const CustomClass& value)
+    {
+        out << value.avg;
+        out << value.exp;
+
+        return out;
+    }
+
+    QDataStream& operator>>(QDataStream& in, CustomClass& value)
+    {
+        in >> value.avg;
+        in >> value.exp;
+
+        return in;
+    }
 
     // fields
     int avg{1337};
