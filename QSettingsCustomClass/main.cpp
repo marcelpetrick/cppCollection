@@ -5,10 +5,18 @@
 #include <QtCore/QMetaType>
 #include <QtCore/QSettings>
 #include <QtCore/QVariant>
-//#include <QCoreApplication> //not needed right now
+
+namespace  {
+QString const cCompanyName{"marcelpetrick.it"};
+QString const cAppName{"CustomClass"};
+QString const cGroupName{"firstExample"};
+};
 
 int main(int argc, char *argv[])
 {
+    std::ignore = argc;
+    std::ignore = argv;
+
     qRegisterMetaTypeStreamOperators<CustomClass>("CustomClass");
 
     // scope for writing QSettings
@@ -20,8 +28,8 @@ int main(int argc, char *argv[])
         custom.exp = 3.14; // pi day tomorrow!
         qDebug() << "custom has right now the values:" << custom.avg << custom.exp;
 
-        QSettings settings(QSettings::UserScope, "marcelpetrick.it", "CustomClass");
-        settings.beginGroup("firstExample");
+        QSettings settings(QSettings::UserScope, cCompanyName, cAppName);
+        settings.beginGroup(cGroupName);
         settings.setValue("custom", QVariant::fromValue(custom));
         settings.endGroup();
         settings.sync();
@@ -29,7 +37,8 @@ int main(int argc, char *argv[])
 
     // retrieve the values again
     {
-        QSettings settings(QSettings::UserScope, "marcelpetrick.it", "CustomClass");
+        QSettings settings(QSettings::UserScope, cCompanyName, cAppName);
+        settings.beginGroup(cGroupName);
         auto variant = settings.value("custom");
 //        int const customClassTypetype = qRegisterMetaType<"CustomClass">;
 //        if(variant.canConvert(customClassTypetype))
@@ -37,12 +46,13 @@ int main(int argc, char *argv[])
             auto custom = variant.value<CustomClass>();
             qDebug() << "retrieved data from registry with values" << custom.avg << custom.exp; // :)
         }
+        settings.endGroup(); //not that this matters in that case
     }
 
-    //left over, no need for an event loop right now
-//    QCoreApplication a(argc, argv);
-
-//    return a.exec();
+    // output:
+    // custom has right now the values: 1337 0.001
+    // custom has right now the values: 123 3.14
+    // retrieved data from registry with values 123 3.14
 
     return 13;
 }
