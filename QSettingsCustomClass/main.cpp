@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
             auto custom = variant.value<CustomClass>();
             qDebug() << "retrieved data from registry with values" << custom.avg << custom.exp; // :)
         }
-        settings.endGroup(); //not that this matters in that case
+        settings.endGroup(); // not that this matters in that case
     }
 
     // output:
@@ -54,5 +54,5 @@ int main(int argc, char *argv[])
     // custom has right now the values: 123 3.14
     // retrieved data from registry with values 123 3.14
 
-    return 13;
+    return 1337;
 }
