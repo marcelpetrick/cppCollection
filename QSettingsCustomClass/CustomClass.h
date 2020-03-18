@@ -62,7 +62,7 @@ public:
 //        out << qlist;
 
         //! Iterate over the items and put them to the stream.
-        for( auto const& elem : value._params)
+        for(auto const& elem : value._params)
         {
             out << elem;
         }
@@ -77,7 +77,7 @@ public:
 
         // for the list
         // see: https://stackoverflow.com/questions/21186434/save-and-load-qlistclass-to-file
-        while (!in.atEnd())
+        while(!in.atEnd())
         {
             // create new item
             CustomClass cc;
@@ -86,6 +86,9 @@ public:
             // put into container
             value._params.push_back(cc);
         }
+
+        // pop the last item: not sure why this was inserted // todo investigate this
+        value._params.pop_back();
 
         return in;
     }

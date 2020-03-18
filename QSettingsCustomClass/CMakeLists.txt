@@ -15,7 +15,6 @@ find_package(Qt5Core)
 
 add_executable(QSettingsCustomClass
     CustomClass.h
-    CustomClass.cpp
     main.cpp
 )
 target_link_libraries(QSettingsCustomClass Qt5::Core)
