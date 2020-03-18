@@ -10,6 +10,7 @@ namespace  {
 QString const cCompanyName{"marcelpetrick.it"};
 QString const cAppName{"CustomClass"};
 QString const cGroupName{"firstExample"};
+int const cLEET{1337};
 };
 
 int main(int argc, char *argv[])
@@ -96,5 +97,5 @@ int main(int argc, char *argv[])
     // QVariant::save: unable to save type 'CustomClassContainer' (type id: 1025).
     //ASSERT failure in QVariant::save: "Invalid type to save", file kernel\qvariant.cpp, line 2594
 
-    return 1337;
+    return cLEET;
 }
