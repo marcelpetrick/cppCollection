@@ -22,11 +22,11 @@ int main(int argc, char *argv[])
     // scope for writing QSettings
     {
         auto custom = CustomClass();
-        qDebug() << "custom has right now the values:" << custom.avg << custom.exp;
+        qDebug() << "custom has right now the values:" << custom._avg << custom._exp;
 
-        custom.avg = 123;
-        custom.exp = 3.14; // pi day tomorrow!
-        qDebug() << "custom has right now the values:" << custom.avg << custom.exp;
+        custom._avg = 123;
+        custom._exp = 3.14; // pi day tomorrow!
+        qDebug() << "custom has right now the values:" << custom._avg << custom._exp;
 
         QSettings settings(QSettings::UserScope, cCompanyName, cAppName);
         settings.beginGroup(cGroupName);
@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 //        if(variant.canConvert(customClassTypetype))
         {
             auto custom = variant.value<CustomClass>();
-            qDebug() << "retrieved data from registry with values" << custom.avg << custom.exp; // :)
+            qDebug() << "retrieved data from registry with values" << custom._avg << custom._exp; // :)
         }
         settings.endGroup(); // not that this matters in that case
     }

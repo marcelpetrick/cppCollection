@@ -21,23 +21,23 @@ public:
     // TODO handlers for the QDataStream
     friend QDataStream& operator<<(QDataStream& out, const CustomClass& value)
     {
-        out << value.avg;
-        out << value.exp;
+        out << value._avg;
+        out << value._exp;
 
         return out;
     }
 
     friend QDataStream& operator>>(QDataStream& in, CustomClass& value)
     {
-        in >> value.avg;
-        in >> value.exp;
+        in >> value._avg;
+        in >> value._exp;
 
         return in;
     }
 
     // fields
-    int avg{1337};
-    double exp{0.001};
+    int _avg{1337};
+    double _exp{0.001};
 };
 Q_DECLARE_METATYPE(CustomClass); //! @attention beware of namespace, if one is used
 
