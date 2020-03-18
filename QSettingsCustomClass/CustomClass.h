@@ -7,6 +7,9 @@
 //! @note workflow follows mostly https://stackoverflow.com/questions/18144377/writing-and-reading-custom-class-to-qsettings (first answer)
 //! with the two QDataStream methods as friends
 
+//! ------------------------------------------------------------------------------------
+//! @brief Container for some custom-class to test if the serialisation/deserialisation works.
+//! //! ------------------------------------------------------------------------------------
 class CustomClass
 {
 public:
@@ -37,3 +40,17 @@ public:
     double exp{0.001};
 };
 Q_DECLARE_METATYPE(CustomClass); //! @attention beware of namespace, if one is used
+
+//! ------------------------------------------------------------------------------------
+//! @brief Container, which uses some container with typoe CustomClass.
+//! //! ------------------------------------------------------------------------------------
+class CustomClassContainer
+{
+public:
+
+
+    // fields
+    bool _hasSpecialFlag{false};
+    std::vector<CustomClass> _params{};
+};
+Q_DECLARE_METATYPE(CustomClassContainer);
