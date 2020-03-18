@@ -54,5 +54,47 @@ int main(int argc, char *argv[])
     // custom has right now the values: 123 3.14
     // retrieved data from registry with values 123 3.14
 
+    //! -------------------- yeah, maybe make it a real QTest ------------------
+
+    qRegisterMetaTypeStreamOperators<CustomClassContainer>("CustomClassContainer");
+
+    // scope for writing:
+    {
+        // initialize
+        auto ccc = CustomClassContainer();
+        ccc._hasSpecialFlag = true;
+        for(int i = 0; i < 3; i++)
+        {
+            auto custom = CustomClass();
+            custom._avg = 1 * i;
+            custom._exp = 0.111 * i;
+            ccc._params.push_back(custom);
+        }
+        QSettings settings(QSettings::UserScope, cCompanyName, cAppName);
+        settings.beginGroup(cGroupName);
+        settings.setValue("CustomContainerClass", QVariant::fromValue(ccc));
+        settings.endGroup();
+        settings.sync();
+    }
+
+    // scope for reading
+    {
+        QSettings settings(QSettings::UserScope, cCompanyName, cAppName);
+        settings.beginGroup(cGroupName);
+        auto variant = settings.value("CustomContainerClass");
+        auto ccc = variant.value<CustomClassContainer>();
+        qDebug() << "retrieved data from registry with values" << (ccc._hasSpecialFlag ? "TRUE" : "FALSE" );
+        qDebug() << " print now the param-package:";
+        for(auto const& elem : ccc._params)
+        {
+            qDebug() << "\t" << elem._avg << elem._exp; // :)
+        }
+        settings.endGroup(); // not that this matters in that case
+    }
+
+    //! problem: assert fail; what now?
+    // QVariant::save: unable to save type 'CustomClassContainer' (type id: 1025).
+    //ASSERT failure in QVariant::save: "Invalid type to save", file kernel\qvariant.cpp, line 2594
+
     return 1337;
 }
