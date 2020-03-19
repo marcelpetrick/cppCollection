@@ -6,6 +6,9 @@
 #include <QtCore/QSettings>
 #include <QtCore/QVariant>
 
+// std
+#include <vector>
+
 namespace  {
 QString const cCompanyName{"marcelpetrick.it"};
 QString const cAppName{"CustomClass"};
@@ -96,6 +99,10 @@ int main(int argc, char *argv[])
     //! problem: assert fail; what now?
     // QVariant::save: unable to save type 'CustomClassContainer' (type id: 1025).
     //ASSERT failure in QVariant::save: "Invalid type to save", file kernel\qvariant.cpp, line 2594
+
+    // TODO to serialize the std::map<std::String, CustomContainerClass> maybe use the way to serialize a QMap.
+    // and convert eh std::map to QMap
+    // or Abust groups: see https://gist.github.com/nowrep/1810670
 
     return cLEET;
 }

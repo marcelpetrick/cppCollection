@@ -3,7 +3,7 @@
 // Qt
 #include <QtCore/QMetaType>
 #include <QtCore/QDataStream>
-#include <QtCore/QList>
+//#include <QtCore/QList>
 
 //! @note workflow follows mostly https://stackoverflow.com/questions/18144377/writing-and-reading-custom-class-to-qsettings (first answer)
 //! with the two QDataStream methods as friends
