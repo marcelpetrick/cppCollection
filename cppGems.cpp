@@ -22,3 +22,12 @@ Device::getProperties() const
 auto [time, length, freq] = getProperties(); // (✿◠‿◠)
 
 // ---------------------------------------------------------------------------
+
+//! Get the user-name (based on the user-dir-pathname)
+QString
+Settings::getUserName() const
+{
+    auto const homePath = QStandardPaths::standardLocations(QStandardPaths::HomeLocation);
+    auto const userName = homePath.first().split(QRegExp("[/\\\\]")).last(); // necessary, because QDir::separator() does not fit everytime on Win
+    return userName;
+}
