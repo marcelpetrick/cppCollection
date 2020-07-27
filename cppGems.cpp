@@ -31,3 +31,23 @@ Settings::getUserName() const
     auto const userName = homePath.first().split(QRegExp("[/\\\\]")).last(); // necessary, because QDir::separator() does not fit everytime on Win
     return userName;
 }
+
+// ---------------------------------------------------------------------------
+
+//! Handle checkstate for all direct children of an item in a QTreeWidget
+
+// connect
+connect(ui->treeWidget, &QTreeWidget::itemChanged, this, &TreeDialog::slotHandleCheckStates));
+
+// handler
+void
+TreeDialog::slotHandleCheckStates(QTreeWidgetItem* item, int column)
+{
+    auto const currentCheckState = item->checkState(0);
+    for(int i = 0; i < item->childCount(); ++i)
+    {
+       item->child(i)->setCheckState(0, currentCheckState);
+    }
+}
+
+// ---------------------------------------------------------------------------
