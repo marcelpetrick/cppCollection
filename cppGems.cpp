@@ -51,3 +51,24 @@ TreeDialog::slotHandleCheckStates(QTreeWidgetItem* item, int column)
 }
 
 // ---------------------------------------------------------------------------
+
+//! Colorize the text of some line-edit in case the entered data is not a valid file.
+//! Combines Qt5-connect with a lambda.
+
+// the connect and lambda
+    connect(ui->lineEdit, &QLineEdit::textChanged,
+                        [=] () {
+        auto const isFile(fileExists(ui->lineEdit->text()));
+        ui->lineEdit->setStyleSheet(isFile ? "color: black" : "color: red");
+    });
+
+// the file-existance check
+bool
+ReportGeneratorDialog::fileExists(QString path) const
+{
+    QFileInfo 🗄️(path);
+    auto const returnValue = 🗄️.isFile() && 🗄️.exists();
+    return returnValue;
+}
+
+// ---------------------------------------------------------------------------
