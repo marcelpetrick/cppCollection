@@ -14,13 +14,13 @@ Window {
 
     TextField {
         id: pwField
-        x: 49
+        x: 50
         y: 50
-        width: 181
+        width: 180
         height: 45
         antialiasing: true
-        rotation: 10
-        transformOrigin: Item.Center
+        //rotation: 10
+        //transformOrigin: Item.Center
         font.pointSize: 20
         echoMode: 2
         placeholderText: "password"
@@ -33,9 +33,3 @@ Window {
         }
     }
 }
-
-/*##^##
-Designer {
-    D{i:1;anchors_height:45;anchors_width:181;anchors_x:20;anchors_y:30}
-}
-##^##*/
