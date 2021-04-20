@@ -19,17 +19,14 @@ Window {
         width: 180
         height: 45
         antialiasing: true
-        //rotation: 10
-        //transformOrigin: Item.Center
+        rotation: 10
+        transformOrigin: Item.Center
         font.pointSize: 20
         echoMode: 2
         placeholderText: "password"
         maximumLength: 4
-        onDataChanged: if (text === "aaaa") {
-                           console.log("proper!")
-                       }
-        onTextChanged: {
-
+        onTextChanged: if (text === "aaaa") {
+            console.log("proper!")
         }
     }
 }
