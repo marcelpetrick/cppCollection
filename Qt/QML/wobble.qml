@@ -25,8 +25,19 @@ Window {
         echoMode: 2
         placeholderText: "password"
         maximumLength: 4
-        onTextChanged: if (text === "aaaa") {
-            console.log("proper!")
+        onTextChanged: {
+            if (text.length === 4) {
+                console.log("length 4 reached")
+
+                if (text === "aaaa") {
+                    console.log("proper!")
+                } else {
+                    console.log("reset now")
+                    text = ""
+                }
+
+
+            }
         }
     }
 }
