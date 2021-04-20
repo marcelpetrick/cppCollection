@@ -1,13 +1,10 @@
 #include <QGuiApplication>
-#include <QQuickView>
+#include <QQmlApplicationEngine>
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
-
-    QQuickView view;
-    view.setSource(QUrl("qrc:/wobble.qml"));
-    view.show();
+    QQmlApplicationEngine engine(QUrl("qrc:/wobble.qml"));
 
     return app.exec();
 }
