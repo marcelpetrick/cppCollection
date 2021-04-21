@@ -39,5 +39,11 @@ Window {
 
             }
         }
+
+        RotationAnimation on rotation {
+                loops: Animation.Infinite
+                from: 0
+                to: 360
+            }
     }
 }
