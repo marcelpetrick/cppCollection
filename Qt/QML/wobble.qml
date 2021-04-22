@@ -38,16 +38,17 @@ Window {
                 } else {
                     console.log("reset now")
                     text = ""
+                    animation.start()
                 }
-
-
             }
         }
 
-//        RotationAnimation on rotation {
-//                loops: Animation.Infinite
-//                from: 0
-//                to: 360
-//            }
+        RotationAnimation on rotation {
+            id: animation
+            running: false
+            loops: 2 //Animation.Infinite
+            from: 0
+            to: 360
+        }
     }
 }
