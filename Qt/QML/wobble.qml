@@ -1,6 +1,6 @@
 // test for the wobbling password field: on failing to enter correct items
 // use with 'qmlscene'
-import QtQuick 2.15
+import QtQuick 2.12
 import QtQuick.Window 2.2
 import QtQuick.Controls 1.4
 
@@ -9,6 +9,9 @@ Window {
     visible: true
     width: 400
     height: 300
+    x: Screen.width / 2 - width / 2
+    y: Screen.height / 2 - height / 2
+
     color: "#860606"
     title: qsTr("Hello World")
 
