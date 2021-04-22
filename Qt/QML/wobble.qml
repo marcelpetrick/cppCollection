@@ -7,8 +7,8 @@ import QtQuick.Controls 1.4
 Window {
     id: window
     visible: true
-    width: 400
-    height: 300
+    width: 666
+    height: 333
     //move it to a proper centered position
     x: Screen.width / 2 - width / 2
     y: Screen.height / 2 - height / 2
@@ -50,5 +50,30 @@ Window {
             from: 0
             to: 360
         }
+    }
+
+    Rectangle {
+        id: theRect
+        width: 100; height: 100
+        color: "red"
+
+        // this is a standalone animation, it's not running by default
+        SequentialAnimation
+        {
+            id: rectAni;
+            PropertyAnimation {
+                target: theRect;
+                property: "x";
+                to: 300;
+                duration: 500 }
+            PropertyAnimation {
+                target: theRect;
+                property: "x";
+                to: 100;
+                duration: 500 }
+        }
+
+
+        MouseArea { anchors.fill: parent; onClicked: rectAni.running = true }
     }
 }
