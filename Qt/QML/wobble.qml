@@ -9,6 +9,7 @@ Window {
     visible: true
     width: 400
     height: 300
+    //move it to a proper centered position
     x: Screen.width / 2 - width / 2
     y: Screen.height / 2 - height / 2
 
@@ -43,10 +44,10 @@ Window {
             }
         }
 
-        RotationAnimation on rotation {
-                loops: Animation.Infinite
-                from: 0
-                to: 360
-            }
+//        RotationAnimation on rotation {
+//                loops: Animation.Infinite
+//                from: 0
+//                to: 360
+//            }
     }
 }
