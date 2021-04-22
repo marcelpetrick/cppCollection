@@ -35,12 +35,40 @@ Window {
 
                 if (text === "aaaa") {
                     console.log("proper!")
+                    pwTrue.start()
                 } else {
                     console.log("reset now")
                     text = ""
                     animation.start()
                 }
             }
+        }
+
+
+        SequentialAnimation
+        {
+//            property int shiftDistance: 50;
+            id: pwTrue;
+            PropertyAnimation {
+                target: pwField;
+                property: "x";
+                to: -50;
+                duration: 222 }
+            PropertyAnimation {
+                target: pwField;
+                property: "x";
+                to: 2*50;
+                duration: 222 }
+            PropertyAnimation {
+                target: pwField;
+                property: "x";
+                to: -50/2;
+                duration: 222 }
+            PropertyAnimation {
+                target: pwField;
+                property: "x";
+                to: 50;
+                duration: 222 }
         }
 
         RotationAnimation on rotation {
