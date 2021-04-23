@@ -18,10 +18,11 @@ Window {
 
     TextField {
         id: pwField
-        x: 50
-        y: 50
+        anchors.horizontalCenter: window.anchor.horizontalCenter
+//        x: 50
+//        y: 50
         width: 180
-        height: 45
+        height: 50
         antialiasing: true
         rotation: 10
         transformOrigin: Item.Center
@@ -34,7 +35,7 @@ Window {
                 console.log("length 4 reached")
 
                 if (text === "aaaa") {
-                    console.log("proper!")
+                    console.log("proper input!")
                     pwTrue.start()
                 } else {
                     console.log("reset now")
@@ -44,28 +45,27 @@ Window {
             }
         }
 
-
         SequentialAnimation
         {
 //            property int shiftDistance: 50;
             id: pwTrue;
             PropertyAnimation {
-                target: pwField;
+                target: pwField.anchors.horizontalCenterOffset;
                 property: "x";
                 to: -50;
                 duration: 222 }
             PropertyAnimation {
-                target: pwField;
+                target: pwField.anchors.horizontalCenterOffset;
                 property: "x";
                 to: 2*50;
                 duration: 222 }
             PropertyAnimation {
-                target: pwField;
+                target: pwField.anchors.horizontalCenterOffset;
                 property: "x";
                 to: -50/2;
                 duration: 222 }
             PropertyAnimation {
-                target: pwField;
+                target: pwField.anchors.horizontalCenterOffset;
                 property: "x";
                 to: 50;
                 duration: 222 }
@@ -82,8 +82,11 @@ Window {
 
     Rectangle {
         id: theRect
-        width: 100; height: 100
-        color: "red"
+        width: 100
+        height: 100
+        x: 400
+        y: 200
+        color: "blue"
 
         // this is a standalone animation, it's not running by default
         SequentialAnimation
@@ -100,7 +103,6 @@ Window {
                 to: 100;
                 duration: 500 }
         }
-
 
         MouseArea { anchors.fill: parent; onClicked: rectAni.running = true }
     }
