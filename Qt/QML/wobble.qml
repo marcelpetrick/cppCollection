@@ -51,29 +51,28 @@ Window {
             }
         }
 
-        SequentialAnimation
-        {
-//            property int shiftDistance: 50;
+        SequentialAnimation  {
             id: pwTrue;
+            readonly property int shiftDistance : 50
             PropertyAnimation {
                 target: pwField;
                 property: "anchors.horizontalCenterOffset";
-                to: -50;
+                to: -pwTrue.shiftDistance;
                 duration: 222 }
             PropertyAnimation {
                 target: pwField;
                 property: "anchors.horizontalCenterOffset";
-                to: 2*50;
+                to: 2 * pwTrue.shiftDistance;
                 duration: 222 }
             PropertyAnimation {
                 target: pwField;
                 property: "anchors.horizontalCenterOffset";
-                to: -50/2;
+                to: -pwTrue.shiftDistance / 2;
                 duration: 222 }
             PropertyAnimation {
                 target: pwField;
                 property: "anchors.horizontalCenterOffset";
-                to: 50;
+                to: pwTrue.shiftDistance;
                 duration: 222 }
         }
 
