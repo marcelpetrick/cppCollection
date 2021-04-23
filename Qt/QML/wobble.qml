@@ -7,20 +7,25 @@ import QtQuick.Controls 1.4
 Window {
     id: window
     visible: true
-    width: 666
-    height: 333
+    width: 800
+    height: 600
     //move it to a proper centered position
     x: Screen.width / 2 - width / 2
     y: Screen.height / 2 - height / 2
 
     color: "#860606"
-    title: qsTr("Hello World")
+    title: qsTr("password shaker: enter the characters")
+
+    Item {
+        id: innerItem
+        width: window.width
+        height: window.height
+    }
 
     TextField {
         id: pwField
-        anchors.horizontalCenter: window.anchor.horizontalCenter
-//        x: 50
-//        y: 50
+        anchors.horizontalCenter: innerItem.horizontalCenter
+        anchors.verticalCenter: innerItem.verticalCenter
         width: 180
         height: 50
         antialiasing: true
@@ -37,6 +42,7 @@ Window {
                 if (text === "aaaa") {
                     console.log("proper input!")
                     pwTrue.start()
+                    text = ""
                 } else {
                     console.log("reset now")
                     text = ""
@@ -50,23 +56,23 @@ Window {
 //            property int shiftDistance: 50;
             id: pwTrue;
             PropertyAnimation {
-                target: pwField.anchors.horizontalCenterOffset;
-                property: "x";
+                target: pwField;
+                property: "anchors.horizontalCenterOffset";
                 to: -50;
                 duration: 222 }
             PropertyAnimation {
-                target: pwField.anchors.horizontalCenterOffset;
-                property: "x";
+                target: pwField;
+                property: "anchors.horizontalCenterOffset";
                 to: 2*50;
                 duration: 222 }
             PropertyAnimation {
-                target: pwField.anchors.horizontalCenterOffset;
-                property: "x";
+                target: pwField;
+                property: "anchors.horizontalCenterOffset";
                 to: -50/2;
                 duration: 222 }
             PropertyAnimation {
-                target: pwField.anchors.horizontalCenterOffset;
-                property: "x";
+                target: pwField;
+                property: "anchors.horizontalCenterOffset";
                 to: 50;
                 duration: 222 }
         }
@@ -84,8 +90,8 @@ Window {
         id: theRect
         width: 100
         height: 100
-        x: 400
-        y: 200
+        x: 200
+        y: 400
         color: "blue"
 
         // this is a standalone animation, it's not running by default
