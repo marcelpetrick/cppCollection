@@ -1,8 +1,8 @@
-// test for the wobbling password field: on failing to enter correct items
-// use with 'qmlscene'
+// test for the wobbling password field: on providing correct items it should move sideways a bit
+// use with 'qmlscene' (changed: full app now)
 import QtQuick 2.12
 import QtQuick.Window 2.2
-import QtQuick.Controls 1.4
+import QtQuick.Controls 2.12
 
 Window {
     id: window
@@ -51,29 +51,17 @@ Window {
             }
         }
 
-        SequentialAnimation  {
+        SequentialAnimation {
             id: pwTrue;
             readonly property int shiftDistance : 50
-            PropertyAnimation {
-                target: pwField;
-                property: "anchors.horizontalCenterOffset";
-                to: -pwTrue.shiftDistance;
-                duration: 222 }
-            PropertyAnimation {
-                target: pwField;
-                property: "anchors.horizontalCenterOffset";
-                to: 2 * pwTrue.shiftDistance;
-                duration: 222 }
-            PropertyAnimation {
-                target: pwField;
-                property: "anchors.horizontalCenterOffset";
-                to: -pwTrue.shiftDistance / 2;
-                duration: 222 }
-            PropertyAnimation {
-                target: pwField;
-                property: "anchors.horizontalCenterOffset";
-                to: pwTrue.shiftDistance;
-                duration: 222 }
+            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
+                to: -pwTrue.shiftDistance; duration: 222 }
+            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
+                to: 2 * pwTrue.shiftDistance; duration: 222 }
+            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
+                to: -pwTrue.shiftDistance / 2; duration: 222 }
+            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
+                to: pwTrue.shiftDistance; duration: 222 }
         }
 
         RotationAnimation on rotation {
