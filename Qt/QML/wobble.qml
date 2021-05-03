@@ -2,7 +2,7 @@
 // use with 'qmlscene' (changed: full app now)
 import QtQuick 2.12
 import QtQuick.Window 2.2
-import QtQuick.Controls 2.12
+import QtQuick.Controls 1.4 // 2.12
 
 Window {
     id: window
@@ -23,13 +23,18 @@ Window {
     }
 
     TextField {
+        text: "marker"
+        anchors.left: pwField.left
+    }
+
+    TextField {
         id: pwField
         anchors.horizontalCenter: innerItem.horizontalCenter
         anchors.verticalCenter: innerItem.verticalCenter
         width: 180
         height: 50
         antialiasing: true
-        rotation: 10
+//        rotation: 10
         transformOrigin: Item.Center
         font.pointSize: 20
         echoMode: 2
@@ -41,7 +46,7 @@ Window {
 
                 if (text === "aaaa") {
                     console.log("proper input!")
-                    pwTrue.start()
+                    pwFalse.start()
                     text = ""
                 } else {
                     console.log("reset now")
@@ -52,16 +57,29 @@ Window {
         }
 
         SequentialAnimation {
-            id: pwTrue;
-            readonly property int shiftDistance : 50
+            id: pwFalse;
+            readonly property int shiftDistance: 50 //300
+            readonly property int wobbleTime: 400 //150
             PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
-                to: -pwTrue.shiftDistance; duration: 222 }
+                to: -1 * pwFalse.shiftDistance; duration: pwFalse.wobbleTime
+            }
+            PauseAnimation { duration: 300 }
             PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
-                to: 2 * pwTrue.shiftDistance; duration: 222 }
+                to: 1 * pwFalse.shiftDistance; duration: 2 * pwFalse.wobbleTime
+            }
+            PauseAnimation { duration: 300 }
             PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
-                to: -pwTrue.shiftDistance / 2; duration: 222 }
-            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
-                to: pwTrue.shiftDistance; duration: 222 }
+                to: 0; duration: pwFalse.wobbleTime
+            }
+//            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
+//                to: -0.5 * pwFalse.shiftDistance; duration: pwFalse.wobbleTime / 2
+//            }
+//            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
+//                to: 1 * pwFalse.shiftDistance; duration: 2 * pwFalse.wobbleTime / 2
+//            }
+//            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
+//                to: -0.5 * pwFalse.shiftDistance; duration: pwFalse.wobbleTime / 2
+//            }
         }
 
         RotationAnimation on rotation {
