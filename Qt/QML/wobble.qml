@@ -58,28 +58,31 @@ Window {
 
         SequentialAnimation {
             id: pwFalse;
-            readonly property int shiftDistance: 50 //300
-            readonly property int wobbleTime: 400 //150
+            readonly property int shiftDistance: 50
+            readonly property int wobbleTime: 150 // 400
             PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
-                to: -1 * pwFalse.shiftDistance; duration: pwFalse.wobbleTime
+                to: -pwFalse.shiftDistance; duration: pwFalse.wobbleTime
             }
-            PauseAnimation { duration: 300 }
+            //PauseAnimation { duration: 300 }
             PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
-                to: 1 * pwFalse.shiftDistance; duration: 2 * pwFalse.wobbleTime
+                to: pwFalse.shiftDistance; duration: 2 * pwFalse.wobbleTime
             }
-            PauseAnimation { duration: 300 }
+            //PauseAnimation { duration: 300 }
             PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
                 to: 0; duration: pwFalse.wobbleTime
             }
-//            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
-//                to: -0.5 * pwFalse.shiftDistance; duration: pwFalse.wobbleTime / 2
-//            }
-//            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
-//                to: 1 * pwFalse.shiftDistance; duration: 2 * pwFalse.wobbleTime / 2
-//            }
-//            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
-//                to: -0.5 * pwFalse.shiftDistance; duration: pwFalse.wobbleTime / 2
-//            }
+            //PauseAnimation { duration: 300 }
+            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
+                to: -pwFalse.shiftDistance; duration: pwFalse.wobbleTime / 2
+            }
+            //PauseAnimation { duration: 300 }
+            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
+                to: pwFalse.shiftDistance; duration: 2 * pwFalse.wobbleTime / 2
+            }
+            //PauseAnimation { duration: 300 }
+            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
+                to: 0; duration: pwFalse.wobbleTime / 2
+            }
         }
 
         RotationAnimation on rotation {
