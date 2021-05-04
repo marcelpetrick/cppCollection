@@ -56,33 +56,45 @@ Window {
             }
         }
 
-        SequentialAnimation {
-            id: pwFalse;
-            readonly property int shiftDistance: 50
-            readonly property int wobbleTime: 150 // 400
-            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
-                to: -pwFalse.shiftDistance; duration: pwFalse.wobbleTime
-            }
-            //PauseAnimation { duration: 300 }
-            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
-                to: pwFalse.shiftDistance; duration: 2 * pwFalse.wobbleTime
-            }
-            //PauseAnimation { duration: 300 }
-            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
-                to: 0; duration: pwFalse.wobbleTime
-            }
-            //PauseAnimation { duration: 300 }
-            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
-                to: -pwFalse.shiftDistance; duration: pwFalse.wobbleTime / 2
-            }
-            //PauseAnimation { duration: 300 }
-            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
-                to: pwFalse.shiftDistance; duration: 2 * pwFalse.wobbleTime / 2
-            }
-            //PauseAnimation { duration: 300 }
-            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
-                to: 0; duration: pwFalse.wobbleTime / 2
-            }
+//        SequentialAnimation {
+//            id: pwFalse;
+//            readonly property int shiftDistance: 50
+//            readonly property int wobbleTime: 150 // 400
+//            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
+//                to: -pwFalse.shiftDistance; duration: pwFalse.wobbleTime
+//            }
+//            //PauseAnimation { duration: 300 }
+//            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
+//                to: pwFalse.shiftDistance; duration: 2 * pwFalse.wobbleTime
+//            }
+//            //PauseAnimation { duration: 300 }
+//            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
+//                to: 0; duration: pwFalse.wobbleTime
+//            }
+//            //PauseAnimation { duration: 300 }
+//            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
+//                to: -pwFalse.shiftDistance; duration: pwFalse.wobbleTime / 2
+//            }
+//            //PauseAnimation { duration: 300 }
+//            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
+//                to: pwFalse.shiftDistance; duration: 2 * pwFalse.wobbleTime / 2
+//            }
+//            //PauseAnimation { duration: 300 }
+//            PropertyAnimation { target: pwField; property: "anchors.horizontalCenterOffset";
+//                to: 0; duration: pwFalse.wobbleTime / 2
+//            }
+//        }
+
+        SpringAnimation {
+            id: pwFalse
+
+            target: pwField
+            property: "anchors.horizontalCenterOffset"
+
+            spring: 20
+            damping: 0.1
+            from: -50
+            to: 0
         }
 
         RotationAnimation on rotation {
